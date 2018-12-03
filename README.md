@@ -18,7 +18,7 @@ Feel free to review the points and contribute/pull request with new ones.
 
 ## The Customer - HackYourFuture Copenhagen 
 
-#### HackYourFuture Copenhagen HackYourFuture is a non-profit that aims to train refugees and asylum seekers to become web-developers and empower them by opening the doors to a very in-demand job market.
+#### HackYourFuture Copenhagen is a non-profit that aims to train refugees and asylum seekers to become web-developers and empower them by opening the doors to a very in-demand job market.
 
 
 ## The Project Description
