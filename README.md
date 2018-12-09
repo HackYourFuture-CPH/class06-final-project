@@ -5,6 +5,10 @@ Main repository for the final project for Class 06
 
 ![hyf-logo.png](./images/hyf-logo.png)
 
+## Wireframe design
+
+Check this link to see the current wireframes. They will be updated as we go, so keep checking in to keep track of changes: [https://freehand.invisionapp.com/freehand/document/Inhk3GUTr](https://freehand.invisionapp.com/freehand/document/Inhk3GUTr)
+
 ## Working Agreement
 
 [WorkingAgreement.md](./WorkingAgreement.md)
