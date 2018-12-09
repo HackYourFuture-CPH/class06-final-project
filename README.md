@@ -99,3 +99,87 @@ To hand in and get feedback on your iterations you must follow this process for 
 To get feedback before a sunday session, pull requests must be created saturday at 12:00(midday) the latest.
 
 If you are worried that only one member will have the project on his or her github, there is no need. People can see any contributions you make to open source repositories whether it is on your profile or not. After the project is finished we recommend that the remaining team members fork the finished repository from their teammate, to make it easier to showcase the project on their account.
+
+## Individual tasks
+In the beginning of the project students are given individual tasks. This is in part to perform research about topics relevant to the project and in part to ensure that everybody gets some work contributed early on and everyone gets to have specialty knowledge of a certain field.
+
+### 1. Google calendar integration.
+
+Acceptance criteria:
+* Write to the google calendar.
+* Read from the google calendar.
+* Determine whether a user has accepted a Calendar invite.
+* Try to answer whether it is feasible to store all calendar-related data in google and fetch it via the API or whether we need to have it stored locally and figure out a way to syncronize it?
+
+Resources:
+* [https://developers.google.com/calendar/](https://developers.google.com/calendar/)
+
+### 2. Authentication
+Build a prototype authentication setup using github OAuth authentication.
+
+Acceptance criteria:
+* The user should be able to register
+* The user should be able to sign in
+* The user should be able to log out
+* When the is signed in, display the text “logged in” in the bottom of the page.
+
+Resources:
+https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/
+
+### 3. Authorization
+Build a prototype of the role-based logic component we need. You should not build a full authentication model, so assume that the user is already authenticated. Set up an API endpoint that will or will not show certain data based on an authentication token passed into the api determining whether the user has the required roles.
+
+Acceptance criteria:
+* Test whether admin user can read admin content, mentor content and student content
+* Test that mentors cannot see admin content, but can see mentor and student content
+* Test that students can only see student content
+
+Resources:
+https://medium.com/@leonardobrunolima/react-tips-how-to-protect-routes-for-unauthorized-access-with-react-router-v4-73c0d451e0a2
+
+### 4. Research calendar react components
+React Calendar Timeline looks like it will perform the job well. See how well that works for the project - if it’s not a good package try to identify another one or build it yourself.
+
+Acceptance criteria:
+* Must be able to display events in a grid-like layout
+* The layout should display a row for each week. Classes are on sundays and we don’t care about the days in between sundays.
+
+Resources:
+https://www.npmjs.com/package/react-calendar-timeline
+
+### 5. Slack integration
+Research about how to make your Express server interact with Slack.
+
+Acceptance criteria:
+* User should be able to send a msg to the #general slack channel of the Slack Workplace below stated.
+* If a Slack user types /echo in the #general Slack channel, the express server will respond by posting “Hello [username]” on the #general channel (username being the name of the user who posted).
+
+Resources:
+* Slack Workplace for developing - [https://hyfer-cph-test.slack.com](https://hyfer-cph-test.slack.com)
+* [https://api.slack.com/docs/conversations-api](https://hyfer-cph-test.slack.com)
+* [https://api.slack.com/incoming-webhooks](https://hyfer-cph-test.slack.com)
+
+### 6. Exporting and syncronizing calendar events
+Explore how to export an Event from the APP to your own calendar iCal, Google Calendar and so on. We need events to be dynamically updated, so you may have to do some research on using CalDAV.
+
+Acceptance criteria:
+* User should be able to export a single event to his calendar.
+* User should be able to export a series of events to his calendar.
+* Events should update dynamically as they are changed in the application/Google Calendar.
+
+Resources:
+https://www.npmjs.com/package/react-add-to-calendar
+
+
+### 7. Explore the Google Classroom API
+You will need to create a fictitious organization with classes, students and mentors. Test out how everything works and build a small prototype that can pull data out of the API. We are aiming to figure out whether it would be feasible to use Google Classroom as the backend for everything related to classes, mentors and students. Administrators would have to go to Google Classroom to manage everything.
+
+Acceptance criteria:
+* We must learn whether the data stored about teachers is sufficient to support the UI we are aiming to build.
+* We must learn whether the data stored about students is sufficient to support the UI we are aiming to build.
+* We must learn whether the data stored about classes/modules is sufficient to support the UI we are aiming to build.
+* We must learn whether we can build the proposed Calendar UI based on data from Google Classroom.
+* Will using Google Classroom impose restrictions on how we authenticate the user? (i.e. must we use Google Oauth authentication?)
+
+Resources:
+* [https://classroom.google.com](https://classroom.google.com)
