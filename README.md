@@ -160,8 +160,8 @@ Acceptance criteria:
 
 Resources:
 * Slack Workplace for developing - [https://hyfer-cph-test.slack.com](https://hyfer-cph-test.slack.com)
-* [https://api.slack.com/docs/conversations-api](https://hyfer-cph-test.slack.com)
-* [https://api.slack.com/incoming-webhooks](https://hyfer-cph-test.slack.com)
+* [https://api.slack.com/docs/conversations-api](https://api.slack.com/docs/conversations-api)
+* [https://api.slack.com/incoming-webhooks](https://api.slack.com/incoming-webhooks)
 * [https://www.npmjs.com/package/react-slack-chat](https://www.npmjs.com/package/react-slack-chat)
 
 ### 6. Exporting and syncronizing calendar events
