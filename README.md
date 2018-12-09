@@ -162,6 +162,7 @@ Resources:
 * Slack Workplace for developing - [https://hyfer-cph-test.slack.com](https://hyfer-cph-test.slack.com)
 * [https://api.slack.com/docs/conversations-api](https://hyfer-cph-test.slack.com)
 * [https://api.slack.com/incoming-webhooks](https://hyfer-cph-test.slack.com)
+* [https://www.npmjs.com/package/react-slack-chat](https://www.npmjs.com/package/react-slack-chat)
 
 ### 6. Exporting and syncronizing calendar events
 Explore how to export an Event from the APP to your own calendar iCal, Google Calendar and so on. We need events to be dynamically updated, so you may have to do some research on using CalDAV.
