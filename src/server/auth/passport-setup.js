@@ -30,7 +30,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile._json);
-      //passport callbaack, that uses our mysql database to first check if we already have a user with the unique github_ID
+      //passport callbaack, that uses our mysql database to first check if we already have a user with the unique google_id
 
       const googleID = profile._json.id;
       const fullName = profile._json.displayName;
@@ -38,19 +38,25 @@ passport.use(
 
       database.getUserFromGoogleId(googleID)
         .then((results) => {
-          if (results[0]) {
-            console.log('user founded' + results)
-            //if user already exists and there is no need for a new user send the existing user to passport.js for serialization
-            done(null, results[0])
-          }
-          database.createNewUserFromGoogleId(googleID, fullName, imgURL)
-            .then((response) =>{
+
+          if (
+            results === undefined ||
+            results.length === 0 ||
+            results[0].google_id === undefined
+          ) {
+            database.createNewUserFromGoogleId(googleID, fullName, imgURL)
+            .then((response) => {
               database.getUserFromId(response.insertId)
-                .then((results) =>{
+                .then((results) => {
                   done(null, results[0])
-                })  
+                })
+                return
             })
-            
+          }
+          console.log('user founded' + results)
+          //if user already exists and there is no need for a new user send the existing user to passport.js for serialization
+          done(null, results[0])
+          return
         })
         .catch((err) => { throw err})
     }
