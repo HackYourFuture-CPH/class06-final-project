@@ -15,7 +15,7 @@ passport.deserializeUser((id, done) => {
     .then((results)=>{
       done(null, results[0])
     })
-    .catch((err) => { throw err})
+    // .catch((err) => { throw err})
 })
 
 passport.use(
@@ -67,7 +67,7 @@ passport.use(
           done(null, results[0])
           return
         })
-        .catch((err) => { throw err })
+        // .catch((err) => { throw err })
     }
   )
 )
