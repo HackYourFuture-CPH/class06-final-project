@@ -1,6 +1,8 @@
 import Axios from 'axios'
 
 async function getProfileInfo() {
+  console.log('from get profile');
+  
   const response = await Axios.post('/api/profile', { withCredentials: true })
   .catch(
     err => {
@@ -28,6 +30,7 @@ async function getProfileInfo() {
 }
 
 async function isLoggedIn() {
+  console.log('is logged in');
   const response = await Axios.post('/api/profile')
     .catch(err => {
       if (err.response) {

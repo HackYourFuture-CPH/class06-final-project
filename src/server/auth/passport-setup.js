@@ -5,6 +5,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 //serialize or "encrypt" a user into a cookie to send to the client
 passport.serializeUser((user, done) => {
   console.log(user)
+  console.log('in serial');
   done(null, user.id)
 })
 
@@ -13,6 +14,8 @@ passport.deserializeUser((id, done) => {
 
   database.getUserFromId(id)
     .then((results)=>{
+      console.log('in DEserial');
+      
       done(null, results[0])
     })
     .catch((err) => { throw err})

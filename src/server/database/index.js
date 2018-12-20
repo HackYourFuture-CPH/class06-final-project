@@ -58,7 +58,6 @@ pool.createNewUserFromGoogleId = function (googleID, fullName, imgURL) {
             imgURL
         ], (error, result) => {
             if (error) reject('Whoops! could not add Google User to DB!' + error)
-            console.log('from create user, just before resolving');
             
             resolve(result)
         })
