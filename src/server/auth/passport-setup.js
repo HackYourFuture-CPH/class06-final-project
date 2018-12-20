@@ -46,12 +46,20 @@ passport.use(
           ) {
             database.createNewUserFromGoogleId(googleID, fullName, imgURL)
             .then((response) => {
-              database.getUserFromId(response.insertId)
-                .then((results) => {
-                  done(null, results[0]);
-                  return
-                })
-                
+              const user = {
+                id : response.insertId,
+                google_id : googleID,
+                full_name : fullName,
+                img_url : imgURL
+              }
+              done(null, user);
+              return
+
+              // database.getUserFromId(response.insertId)
+              //   .then((results) => {
+              //     done(null, results[0]);
+              //     return
+              //   })  
             })
           }
           console.log('user founded' + results)
