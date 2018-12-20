@@ -48,9 +48,10 @@ passport.use(
             .then((response) => {
               database.getUserFromId(response.insertId)
                 .then((results) => {
-                  done(null, results[0])
+                  done(null, results[0]);
+                  return
                 })
-                return
+                
             })
           }
           console.log('user founded' + results)
@@ -58,7 +59,7 @@ passport.use(
           done(null, results[0])
           return
         })
-        .catch((err) => { throw err})
+        .catch((err) => { throw err })
     }
   )
 )
