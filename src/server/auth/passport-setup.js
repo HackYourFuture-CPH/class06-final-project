@@ -15,7 +15,7 @@ passport.deserializeUser((id, done) => {
     .then((results)=>{
       done(null, results[0])
     })
-    // .catch((err) => { throw err})
+    .catch((err) => { throw err})
 })
 
 passport.use(
@@ -52,6 +52,8 @@ passport.use(
                 full_name : fullName,
                 img_url : imgURL
               }
+              console.log('after user is created, in passprt setup');
+              
               done(null, user);
               return
 
@@ -67,7 +69,7 @@ passport.use(
           done(null, results[0])
           return
         })
-        // .catch((err) => { throw err })
+        .catch((err) => { throw err })
     }
   )
 )

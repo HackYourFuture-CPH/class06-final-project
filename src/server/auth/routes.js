@@ -39,7 +39,7 @@ router.get('/google/logout', (req, res) => {
  * This get's called when a user is signed in and when we try to verify if their signed in.
  * It checks if the cookie is valid and then redirects to home path.
  */
-router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+router.get('/google/redirect', passport.authenticate('google'), (req, res) => {console.log('from redirect');
   res.redirect('/')
 })
 
