@@ -5,7 +5,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 //serialize or "encrypt" a user into a cookie to send to the client
 passport.serializeUser((user, done) => {
   console.log(user)
-  console.log('in serial');
   done(null, user.id)
 })
 
@@ -14,8 +13,6 @@ passport.deserializeUser((id, done) => {
 
   database.getUserFromId(id)
     .then((results)=>{
-      console.log('in DEserial');
-      
       done(null, results[0])
     })
     .catch((err) => { throw err})
@@ -49,22 +46,20 @@ passport.use(
           ) {
             database.createNewUserFromGoogleId(googleID, fullName, imgURL)
             .then((response) => {
-              const user = {
-                id : response.insertId,
-                google_id : googleID,
-                full_name : fullName,
-                img_url : imgURL
-              }
-              console.log('after user is created, in passprt setup');
-              
-              done(null, user);
-              return
-
-              // database.getUserFromId(response.insertId)
-              //   .then((results) => {
-              //     done(null, results[0]);
-              //     return
-              //   })  
+                
+              database.getUserFromId(response.insertId)
+                .then((results) => {
+                  done(null, results[0]);
+                  return
+                })  
+              // const user = {
+              //   id : response.insertId,
+              //   google_id : googleID,
+              //   full_name : fullName,
+              //   img_url : imgURL
+              // }
+              // done(null, user);
+              // return
             })
           }
           else {
