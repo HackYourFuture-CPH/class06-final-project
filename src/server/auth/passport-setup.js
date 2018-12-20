@@ -67,10 +67,12 @@ passport.use(
               //   })  
             })
           }
-          console.log('user founded' + results)
-          //if user already exists and there is no need for a new user send the existing user to passport.js for serialization
-          done(null, results[0])
-          return
+          else {
+            console.log('user founded' + results)
+            //if user already exists and there is no need for a new user send the existing user to passport.js for serialization
+            done(null, results[0])
+            return
+          }
         })
         .catch((err) => { throw err })
     }
