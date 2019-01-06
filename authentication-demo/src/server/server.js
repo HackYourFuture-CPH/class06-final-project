@@ -32,7 +32,7 @@ app.use('/auth', authRouter.router)
 
 /*
  * Here we check the cookie if the cookie is valid with the middleware we wrote,
- * them we send the information back if it's vaild and we send nothing back if it's not.
+ * then we send the information back if it's vaild and we send nothing back if it's not.
  * we could send back json with information that the request was invalid if we wanted to
  * do anything in react to display this.
  */
