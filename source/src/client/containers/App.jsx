@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Public from '../components/Public'
 import Profile from '../components/Profile'
 import { getProfileInfo, isLoggedIn } from '../api/apiCalls'
-import NavBar from '../components/NavBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import NavBar from '../components/NavBar'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 export default class App extends Component {
   constructor(props) {
@@ -18,11 +18,11 @@ export default class App extends Component {
       .then(res => {
         res
           ? this.setState({
-            isAuthenticated: true
-          })
+              isAuthenticated: true
+            })
           : this.setState({
-            isAuthenticated: false
-          })
+              isAuthenticated: false
+            })
       })
       .then(() => {
         //if the user is authenticated fetch information from db and store it in state
@@ -42,10 +42,10 @@ export default class App extends Component {
               isAuthenticated={this.state.isAuthenticated}
               userName={this.state.user.full_name}
             />
-            <Route exact path="/" component={Public} />
+            <Route exact path='/' component={Public} />
             <Route
               exact
-              path="/profile"
+              path='/profile'
               component={props => <Profile {...props} user={this.state.user} />}
             />
           </React.Fragment>
