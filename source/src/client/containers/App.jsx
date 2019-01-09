@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Public from '../components/Public'
 import Profile from '../components/Profile'
 import { getProfileInfo, isLoggedIn } from '../api/apiCalls'
-import NavBar from '../components/NavBar'
-import CssBaseline from '@material-ui/core/CssBaseline'
 
 export default class App extends Component {
   constructor(props) {
@@ -35,13 +33,8 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <CssBaseline />
         <Router>
           <React.Fragment>
-            <NavBar
-              isAuthenticated={this.state.isAuthenticated}
-              userName={this.state.user.full_name}
-            />
             <Route exact path='/' component={Public} />
             <Route
               exact
