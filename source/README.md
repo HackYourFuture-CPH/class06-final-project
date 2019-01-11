@@ -13,7 +13,7 @@ Resources: https://developer.github.com/apps/building-oauth-apps/authorizing-oau
 
 ## Environmental variables used.
 
-- CALLBACK= The callback used when registering your app at OAuth2.0 provider.
+- CALLBACK= The callback used when registering your app at OAuth2.0 provider. Also known as the redirect given you need to provide with OAUTH2.0
 - DB_DATABASE= Database Name.
 - DB_HOST= Database Host.
 - DB_PASSWORD= Database Password
