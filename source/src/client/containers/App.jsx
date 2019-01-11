@@ -4,6 +4,7 @@ import LoginButton from '../components/LoginButton'
 import Public from '../components/Public'
 import Profile from '../components/Profile'
 import { getProfileInfo, isLoggedIn } from '../api/apiCalls'
+import AdminView from './AdminView'
 
 export default class App extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ export default class App extends Component {
               <LoginButton isAuthenticated={this.state.isAuthenticated} />
             </ul>
           </nav>
+          <Route exact path='/adminview' component={AdminView} />
           <Route exact path='/' component={Public} />
           <Route
             exact
