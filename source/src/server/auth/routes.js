@@ -25,7 +25,12 @@ const authCheck = (req, res, next) => {
  * this could easily be changed to acess a slew of diffrent information depending on,
  * what is needed and what the individual authentication provider provides.
  */
-router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
+router.get(
+  '/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'https://www.googleapis.com/auth/calendar']
+  })
+)
 
 /*
  * This route logs out the user and strips the "logged in" information from their cookie
