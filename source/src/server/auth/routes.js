@@ -24,11 +24,14 @@ const authCheck = (req, res, next) => {
  * In this example I only ask for publically available information with read acess only
  * this could easily be changed to acess a slew of diffrent information depending on,
  * what is needed and what the individual authentication provider provides.
+ *
+ * google calender integration can be made with OAuth2.0 authentication by simply adding,
+ * 'https://www.googleapis.com/auth/calendar' to scope array
  */
 router.get(
   '/google',
   passport.authenticate('google', {
-    scope: ['profile', 'https://www.googleapis.com/auth/calendar']
+    scope: ['profile']
   })
 )
 
