@@ -2,6 +2,27 @@ import React, { Component } from 'react'
 import moment from 'moment'
 
 export default class Months extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      weeks: [
+        moment()
+          .startOf('month')
+          .week()
+      ]
+    }
+  }
+
+  componentDidMount() {
+    const week = [...this.state.weeks]
+    for (let i = 0; i < 7; i++) {
+      week.push(week[i] + 1)
+    }
+    this.setState({
+      weeks: week
+    })
+  }
+
   getMonth(prop) {
     var months = [
       'January',
@@ -18,8 +39,8 @@ export default class Months extends Component {
       'December'
     ]
     var now = new Date()
-    var thisMonth = months[now.getMonth() + prop] // getMonth method returns the month of the date (0-January :: 11-December)
-    return thisMonth
+    var thisMonth = months[now.getMonth() + prop]
+    return thisMonth // getMonth method returns the month of the date (0-January :: 11-December)
   }
   render() {
     return (
@@ -27,6 +48,11 @@ export default class Months extends Component {
         <div className='monthName'>
           <h5 className='thisMonth'>{this.getMonth(0)}</h5>
           <h5 className='nextMonth'>{this.getMonth(1)}</h5>
+        </div>
+        <div className='weekNum'>
+          {this.state.weeks.map(ele => (
+            <p>{ele}</p>
+          ))}
         </div>
       </div>
     )

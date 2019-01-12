@@ -47,11 +47,21 @@ img {
 }
 
 .thisMonth {
+  margin: 0 auto;
   width: 47.5%;
   border-bottom-style: solid;
 }
 
 .nextMonth {
+  margin: 0 auto;
   width: 47.5%;
   border-bottom-style: solid;
+}
+
+.weekNum {
+  line-height: 0;
+  margin: 0 1.5%;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
 }
