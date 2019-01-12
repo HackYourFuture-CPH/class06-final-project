@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Months from '../components/Months'
 import mockImg from '../assets/logo_mock.PNG'
 
 export default class AdminPage extends Component {
@@ -10,11 +11,12 @@ export default class AdminPage extends Component {
   render() {
     if (this.props.user.type === 'admin') {
       return (
-        <div>
+        <div className='adminView'>
           <div className='adminViewHead'>
             <img src={mockImg} alt='img' className='AdminLogo' />
             <img src={this.props.user.avatar} alt='Avatar' className='adminAvatar' />
           </div>
+          <Months />
           <p>AdminView</p>
         </div>
       )
