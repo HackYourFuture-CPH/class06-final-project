@@ -43,17 +43,25 @@ export default class App extends Component {
                 <Link to='/profile'>Profile</Link>
               ) : null}
               <li>
+                <Link to='/adminview'>admin view</Link>
+              </li>
+              <li>
                 <Link to='/'>Landing Page</Link>
               </li>
               <LoginButton isAuthenticated={this.state.isAuthenticated} />
             </ul>
           </nav>
-          <Route exact path='/adminview' component={AdminView} />
+          <Route
+            exact
+            path='/adminview'
+            render={props => <AdminView {...props} user={this.state.user} />}
+            // user={this.state.user}
+          />
           <Route exact path='/' component={Public} />
           <Route
             exact
             path='/profile'
-            component={props => <Profile {...props} user={this.state.user} />}
+            render={props => <Profile {...props} user={this.state.user} />}
           />
         </div>
       </Router>
