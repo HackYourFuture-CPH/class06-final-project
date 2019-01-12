@@ -30,13 +30,28 @@ img {
 }
 
 .adminViewHead {
+  display: flex;
   margin: auto;
-  width: 40%;
   padding: 10px;
   background-color: lightgray;
+  justify-content: space-between;
 }
 
 .adminViewHead .adminAvatar {
-  float: right;
   border-radius: 50%;
+}
+
+.monthName {
+  display: flex;
+  justify-content: space-between;
+}
+
+.thisMonth {
+  width: 47.5%;
+  border-bottom-style: solid;
+}
+
+.nextMonth {
+  width: 47.5%;
+  border-bottom-style: solid;
 }
