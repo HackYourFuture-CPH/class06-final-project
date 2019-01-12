@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import Months from '../components/Months'
+import ClassRow from '../components/ClassRow'
 import mockImg from '../assets/logo_mock.PNG'
 
 export default class AdminPage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   render() {
+    //first off all check if the user has the "admin" type, before rendering aynthing
     if (this.props.user.type === 'admin') {
       return (
         <div className='adminView'>
@@ -16,11 +13,16 @@ export default class AdminPage extends Component {
             <img src={mockImg} alt='img' className='AdminLogo' />
             <img src={this.props.user.avatar} alt='Avatar' className='adminAvatar' />
           </div>
+          {/* Render the line where week number and months are displayed*/}
           <Months />
+          {/* Render the row with class modules and button + title */}
+          <ClassRow />
+          {/* placeholder to be removed, it's acting as a footer at the moment to be clear what page we're on*/}
           <p>AdminView</p>
         </div>
       )
     } else {
+      //If the user dosne't have the admin type render this.
       return (
         <div>
           <p>You need to be an admin to view this page.</p>

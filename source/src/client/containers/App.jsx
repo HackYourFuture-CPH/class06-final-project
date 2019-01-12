@@ -55,7 +55,6 @@ export default class App extends Component {
             exact
             path='/adminview'
             render={props => <AdminView {...props} user={this.state.user} />}
-            // user={this.state.user}
           />
           <Route exact path='/' component={Public} />
           <Route
