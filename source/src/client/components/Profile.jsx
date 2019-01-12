@@ -7,9 +7,9 @@ export default class Profile extends Component {
     //but i did it this way aswell as an example, if it's usefull in another case.
     if (Object.keys(this.props.user).length > 1) {
       return (
-        <div className="userinfo">
+        <div className='userinfo'>
           <p> Welcome back {this.props.user.name}!</p>
-          <img src={this.props.user.avatar} alt="none available" />
+          <img src={this.props.user.avatar} alt='Avatar' />
         </div>
       )
     } else {

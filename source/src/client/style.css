@@ -21,3 +21,14 @@ img {
   display: inline-flex;
   align-items: center;
 }
+
+.adminViewHead {
+  margin: auto;
+  width: 40%;
+  padding: 10px;
+}
+
+.adminViewHead .adminAvatar {
+  float: right;
+  border-radius: 50%;
+}
