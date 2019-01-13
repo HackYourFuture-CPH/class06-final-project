@@ -5,6 +5,7 @@ import Public from '../components/Public'
 import Profile from '../components/Profile'
 import { getProfileInfo, isLoggedIn } from '../api/apiCalls'
 import AdminView from './AdminView'
+import AddModule from './AddModule'
 
 export default class App extends Component {
   constructor(props) {
@@ -51,12 +52,13 @@ export default class App extends Component {
               <LoginButton isAuthenticated={this.state.isAuthenticated} />
             </ul>
           </nav>
+          <Route exact path='/' component={Public} />
           <Route
             exact
             path='/adminview'
             render={props => <AdminView {...props} user={this.state.user} />}
           />
-          <Route exact path='/' component={Public} />
+          <Route exact path='/adminview/createmodule' component={AddModule} />
           <Route
             exact
             path='/profile'
