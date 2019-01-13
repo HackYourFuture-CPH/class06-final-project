@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import LoginButton from '../components/LoginButton'
 import Public from '../components/Public'
 import Profile from '../components/Profile'
 import { getProfileInfo, isLoggedIn } from '../api/apiCalls'
-import NavBar from '../components/NavBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import AdminView from './AdminView'
+import AddModule from './AddModule'
+import AddClass from './AddClass'
 
 export default class App extends Component {
   constructor(props) {
@@ -18,11 +20,11 @@ export default class App extends Component {
       .then(res => {
         res
           ? this.setState({
-            isAuthenticated: true
-          })
+              isAuthenticated: true
+            })
           : this.setState({
-            isAuthenticated: false
-          })
+              isAuthenticated: false
+            })
       })
       .then(() => {
         //if the user is authenticated fetch information from db and store it in state
@@ -34,23 +36,38 @@ export default class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <Router>
-          <React.Fragment>
-            <NavBar
-              isAuthenticated={this.state.isAuthenticated}
-              userName={this.state.user.full_name}
-            />
-            <Route exact path="/" component={Public} />
-            <Route
-              exact
-              path="/profile"
-              component={props => <Profile {...props} user={this.state.user} />}
-            />
-          </React.Fragment>
-        </Router>
-      </React.Fragment>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              {/* If user is logged in displays a profile link to view profile */}
+              {this.state.isAuthenticated ? (
+                <Link to='/profile'>Profile</Link>
+              ) : null}
+              <li>
+                <Link to='/adminview'>admin view</Link>
+              </li>
+              <li>
+                <Link to='/'>Landing Page</Link>
+              </li>
+              <LoginButton isAuthenticated={this.state.isAuthenticated} />
+            </ul>
+          </nav>
+          <Route exact path='/' component={Public} />
+          <Route
+            exact
+            path='/adminview'
+            render={props => <AdminView {...props} user={this.state.user} />}
+          />
+          <Route exact path='/adminview/createmodule' component={AddModule} />
+          <Route exact path='/adminview/createclass' component={AddClass} />
+          <Route
+            exact
+            path='/profile'
+            render={props => <Profile {...props} user={this.state.user} />}
+          />
+        </div>
+      </Router>
     )
   }
 }

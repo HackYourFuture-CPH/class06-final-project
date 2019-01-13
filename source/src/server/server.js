@@ -1,5 +1,5 @@
 //Initializes dot files so we can use dotenv
-require('dotenv').config()
+require('dotenv').config({ path: '../../.env' })
 const express = require('express')
 const authRouter = require('./auth/routes.js')
 const path = require('path')

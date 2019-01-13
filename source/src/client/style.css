@@ -21,3 +21,69 @@ img {
   display: inline-flex;
   align-items: center;
 }
+
+.adminView {
+  margin: auto;
+  width: 45%;
+  padding: 10px;
+  background-color: lightgray;
+}
+
+.adminViewHead {
+  display: flex;
+  margin: auto;
+  padding: 10px;
+  background-color: lightgray;
+  justify-content: space-between;
+}
+
+.adminViewHead .adminAvatar {
+  border-radius: 50%;
+}
+
+.monthName {
+  display: flex;
+  justify-content: space-between;
+}
+
+.thisMonth {
+  margin: 0 auto;
+  width: 47.5%;
+  border-bottom-style: solid;
+}
+
+.nextMonth {
+  margin: 0 auto;
+  width: 47.5%;
+  border-bottom-style: solid;
+}
+
+.weekNum {
+  line-height: 0;
+  margin: 0 1.5%;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.classrow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addModule {
+  margin: auto;
+  width: 45%;
+  padding: 10px;
+  background-color: lightgray;
+}
+
+.addclassbuttonwrap {
+  padding: 6px;
+}
