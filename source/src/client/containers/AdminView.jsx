@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Months from '../components/Months'
 import ClassRow from '../components/ClassRow'
 import mockImg from '../assets/logo_mock.PNG'
+import { Link } from 'react-router-dom'
 
 export default class AdminPage extends Component {
   render() {
@@ -19,6 +20,11 @@ export default class AdminPage extends Component {
           <ClassRow />
           {/* placeholder to be removed, it's acting as a footer at the moment to be clear what page we're on*/}
           <p>AdminView</p>
+          <button className='addclassbuttonwrap'>
+            <Link className=' button' to='/adminview/createclass'>
+              Add a Class
+            </Link>
+          </button>
         </div>
       )
     } else {

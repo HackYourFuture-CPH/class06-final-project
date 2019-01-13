@@ -6,6 +6,7 @@ import Profile from '../components/Profile'
 import { getProfileInfo, isLoggedIn } from '../api/apiCalls'
 import AdminView from './AdminView'
 import AddModule from './AddModule'
+import AddClass from './AddClass'
 
 export default class App extends Component {
   constructor(props) {
@@ -59,6 +60,7 @@ export default class App extends Component {
             render={props => <AdminView {...props} user={this.state.user} />}
           />
           <Route exact path='/adminview/createmodule' component={AddModule} />
+          <Route exact path='/adminview/createclass' component={AddClass} />
           <Route
             exact
             path='/profile'
