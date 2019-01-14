@@ -70,7 +70,10 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "server": "node src/server/server.js",
-    "heroku-postbuild": "npm install && npm run build"
+    "heroku-postbuild": "npm install && npm run build",
+    "migrate": "cd src/server/database && knex migrate:latest",
+    "rollback": "cd src/server/database && knex migrate:rollback",
+    "seed": "cd src/server/database && knex seed:run"
   },
   "eslintConfig": {
     "extends": "react-app"
