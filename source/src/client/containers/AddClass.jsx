@@ -15,7 +15,7 @@ export default class AddClass extends Component {
   }
 
   onSubmitClickHandler = e => {
-    const inp = this.state.inp
+    // const inp = this.state.inp //This is meant to be used in CRUD command to create a class.
     this.setState({
       inp: ''
     })
@@ -29,9 +29,9 @@ export default class AddClass extends Component {
   render() {
     return (
       <div className='addClass'>
-        <h3>Add Class</h3>
+        <h3 id='classtitle'>Add Class</h3>
         <div>
-          <p className='addclasssub'>Enter Name</p>
+          <p>Enter Name</p>
           <InputField
             type='text'
             className='inpfield'

@@ -85,20 +85,22 @@ img {
 }
 
 .addClass {
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: auto;
-  width: 45%;
+  width: 20%;
   padding: 10px;
   background-color: lightgray;
 }
-.addclasssub {
-  width: 0 auto;
-}
+
 .addclassbuttonwrap {
   padding: 6px;
 }
 
 .submitclass {
   float: right;
+  margin-left: auto;
+  margin-right: 2.5%;
   padding: 6px;
 }
