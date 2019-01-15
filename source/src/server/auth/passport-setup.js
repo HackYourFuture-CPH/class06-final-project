@@ -48,7 +48,6 @@ passport.use(
         'select * FROM users WHERE google_id = ?',
         [profile._json.id],
         async (err, results, fields) => {
-          console.log(results)
           if (err) {
             throw new Error('Something went wrong in fething a user!' + err)
           } else if (
@@ -67,6 +66,7 @@ passport.use(
                 profile._json.image.url
               ],
               (err, results, fields) => {
+                console.log(results)
                 if (err) {
                   throw new Error('Whoops! could not add Google User to DB!' + err)
                 } else {
@@ -76,8 +76,7 @@ passport.use(
                     name: profile._json.name.givenName,
                     type: profile._json.kind,
                     google_login: profile._json.displayName,
-                    google_id: profile._json.id,
-                    role: results[0].rolse_id
+                    google_id: profile._json.id
                   }
                   //then send to passport.js for serialization the user we just created and tell it that we're done
                   //checking if the user exists

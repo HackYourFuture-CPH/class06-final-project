@@ -28,16 +28,12 @@ async function isLoggedIn() {
   const response = await Axios.post('/api/profile')
     .catch(err => {
       if (err.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         console.log(err.response.data)
         console.log(err.response.status)
         console.log(err.response.headers)
       } else if (err.request) {
-        // The request was made but no response was received
         throw new Error('Whoops something went wring while POSTing!: ' + err.request)
       } else {
-        // Something happened in setting up the request that triggered an err
         throw new Error(
           'Whoops something went wring while POSTing!: ' + err.response
         )
@@ -55,4 +51,25 @@ async function isLoggedIn() {
   return await response
 }
 
-export { getProfileInfo, isLoggedIn }
+async function createNewClass(params) {
+  console.log(params)
+  const response = await Axios.post('/api/createclass', { data: params }).catch(
+    err => {
+      if (err.response) {
+        console.log(err.response.data)
+        console.log(err.response.status)
+        console.log(err.response.headers)
+      } else if (err.request) {
+        throw new Error('Whoops something went wring while POSTing!: ' + err.request)
+      } else {
+        throw new Error(
+          'Whoops something went wring while POSTing!: ' + err.response
+        )
+      }
+      console.log(err.config)
+    }
+  )
+  return await response.data
+}
+
+export { getProfileInfo, isLoggedIn, createNewClass }

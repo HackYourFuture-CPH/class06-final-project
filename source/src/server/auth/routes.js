@@ -17,6 +17,14 @@ const authCheck = (req, res, next) => {
   }
 }
 
+const isAdmin = (req, res, next) => {
+  if ((req.user.role_id = 1)) {
+    next()
+  } else {
+    res.send('notAdmin')
+  }
+}
+
 /*
  * This route tells passport.js that when the hit the localhost:9001/auth/github endpoint
  * we want to authenticate with the github strategy, and what scope we want.
@@ -51,4 +59,4 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   res.redirect('/')
 })
 
-module.exports = { router, authCheck }
+module.exports = { router, authCheck, isAdmin }

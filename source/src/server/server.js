@@ -2,7 +2,9 @@
 require('dotenv').config({ path: '../../.env' })
 const express = require('express')
 const authRouter = require('./auth/routes.js')
+const queries = require('./database/queries')
 const path = require('path')
+const bp = require('body-parser')
 // Even though we don't use this variable anywhere, if it's not required the authentication dosen't work.
 // I'll get back to it and figure it out.
 // eslint-disable-next-line no-unused-vars
@@ -12,6 +14,8 @@ const passport = require('passport')
 const port = process.env.PORT || 9001
 const buildPath = path.join(__dirname, '../../build')
 const app = express()
+app.use(bp.urlencoded({ extended: true }))
+app.use(bp.json())
 app.use(express.static(buildPath))
 //Here we set the lifetime of the cookie and the encryption string which can be any string you can think of.
 app.use(
@@ -38,6 +42,10 @@ app.use('/auth', authRouter.router)
  */
 app.post('/api/profile', authRouter.authCheck, (req, res) => {
   res.send(req.user)
+})
+
+app.post('/api/createclass', authRouter.isAdmin, (req, res) => {
+  res.send(queries.createClass({ name: req.body.data }))
 })
 
 /*
