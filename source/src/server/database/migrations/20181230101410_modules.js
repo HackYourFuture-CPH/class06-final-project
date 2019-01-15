@@ -1,13 +1,11 @@
-exports.up = function(knex, Promise) {
-  return knex.schema.createTable('modules', table => {
+const tableName = 'modules'
+exports.up = knex =>
+  knex.schema.createTable(tableName, table => {
     table.increments()
     table.string('title')
     table.string('description')
     table.string('length')
     table.timestamps(true, true)
   })
-}
 
-exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('modules')
-}
+exports.down = knex => knex.schema.dropTable(tableName)

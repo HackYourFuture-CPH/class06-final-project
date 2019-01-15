@@ -84,6 +84,23 @@ img {
   background-color: lightgray;
 }
 
+.addClass {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+  background-color: lightgray;
+}
+
 .addclassbuttonwrap {
+  padding: 6px;
+}
+
+.submitclass {
+  float: right;
+  margin-left: auto;
+  margin-right: 2.5%;
   padding: 6px;
 }
