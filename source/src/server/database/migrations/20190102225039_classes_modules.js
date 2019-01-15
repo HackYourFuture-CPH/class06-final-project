@@ -1,5 +1,6 @@
-exports.up = function(knex, Promise) {
-  return knex.schema.createTable('classes_modules', table => {
+const tableName = 'classes_modules'
+exports.up = knex =>
+  knex.schema.createTable(tableName, table => {
     table
       .integer('classid')
       .unsigned()
@@ -19,8 +20,5 @@ exports.up = function(knex, Promise) {
     table.date('end_date')
     table.primary(['classid', 'moduleid'])
   })
-}
 
-exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('classes_modules')
-}
+exports.down = knex => knex.schema.dropTable(tableName)

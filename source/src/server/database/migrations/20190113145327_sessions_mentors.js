@@ -1,21 +1,22 @@
-const tableName = 'modules_skills'
+const tableName = 'sessions_mentors'
 exports.up = knex =>
   knex.schema.createTable(tableName, table => {
     table
-      .integer('module_id')
+      .integer('session_id')
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('modules')
+      .inTable('sessions')
       .onDelete('CASCADE')
     table
-      .integer('skill_id')
+      .integer('mentor_id')
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('skills')
+      .inTable('users')
       .onDelete('CASCADE')
-    table.primary(['module_id', 'skill_id'])
+    table.string('status') // pending | assign | confirmed
+    table.primary(['session_id', 'mentor_id'])
   })
 
 exports.down = knex => knex.schema.dropTable(tableName)

@@ -1,5 +1,7 @@
-exports.up = function(knex, Promise) {
-  return knex.schema.createTable('mentors_skills', table => {
+const tableName = 'users_skills'
+
+exports.up = knex =>
+  knex.schema.createTable(tableName, table => {
     table
       .integer('skill_id')
       .unsigned()
@@ -8,14 +10,13 @@ exports.up = function(knex, Promise) {
       .inTable('skills')
       .onDelete('CASCADE')
     table
-      .integer('mentor_id')
+      .integer('user_id')
       .unsigned()
       .notNullable()
       .references('id')
       .inTable('users')
       .onDelete('CASCADE')
-    table.primary(['skill_id', 'mentor_id'])
+    table.primary(['skill_id', 'user_id'])
   })
-}
 
-exports.down = (knex, Promise) => knex.schema.dropTable('mentors_skills')
+exports.down = knex => knex.schema.dropTable(tableName)

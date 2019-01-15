@@ -1,5 +1,6 @@
-exports.up = function(knex, Promise) {
-  return knex.schema.createTable('sessions', table => {
+const tableName = 'sessions'
+exports.up = knex =>
+  knex.schema.createTable(tableName, table => {
     table.increments()
     table
       .integer('module_id')
@@ -15,6 +16,5 @@ exports.up = function(knex, Promise) {
     table.timestamp('session_date', true).defaultTo(knex.fn.now())
     table.timestamps(true, true)
   })
-}
 
-exports.down = (knex, Promise) => knex.schema.dropTable('sessions')
+exports.down = knex => knex.schema.dropTable(tableName)
