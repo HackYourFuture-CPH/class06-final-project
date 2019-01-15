@@ -5,9 +5,15 @@ import mockImg from '../assets/logo_mock.PNG'
 import { Link } from 'react-router-dom'
 
 export default class AdminPage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      classes: {}
+    }
+  }
   render() {
     //first off all check if the user has the "admin" type, before rendering aynthing
-    if (this.props.user.type === 'admin') {
+    if (this.props.user.role_id === 1) {
       return (
         <div className='adminView'>
           <div className='adminViewHead'>
