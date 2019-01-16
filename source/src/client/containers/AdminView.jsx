@@ -9,7 +9,7 @@ export default class AdminPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      classes: {}
+      classes: undefined
     }
   }
 
@@ -36,8 +36,12 @@ export default class AdminPage extends Component {
           </div>
           {/* Render the line where week number and months are displayed*/}
           <Months />
-          {/* Render the row with class modules and button + title */}
-          <ClassRow />
+          {/* Render the row with class modules and button + title if data is fetched*/}
+          {this.state.classes
+            ? this.state.classes.map(item => (
+                <ClassRow classObj={item} key={item.id} />
+              ))
+            : null}
           {/* placeholder to be removed, it's acting as a footer at the moment to be clear what page we're on*/}
           <p>AdminView</p>
           <button className='addclassbuttonwrap'>
