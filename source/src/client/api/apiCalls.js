@@ -72,4 +72,20 @@ async function createNewClass(params) {
   return await response.data
 }
 
-export { getProfileInfo, isLoggedIn, createNewClass }
+async function getClasses() {
+  const res = await Axios.post('/api/getclasses').catch(err => {
+    if (err.response) {
+      console.log(err.response.data)
+      console.log(err.response.status)
+      console.log(err.response.headers)
+    } else if (err.request) {
+      throw new Error('Whoops something went wring while POSTing!: ' + err.request)
+    } else {
+      throw new Error('Whoops something went wring while POSTing!: ' + err.response)
+    }
+    console.log(err.config)
+  })
+  console.log(res.data)
+  return await res.data
+}
+export { getProfileInfo, isLoggedIn, createNewClass, getClasses }

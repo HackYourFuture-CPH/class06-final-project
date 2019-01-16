@@ -3,6 +3,7 @@ import Months from '../components/Months'
 import ClassRow from '../components/ClassRow'
 import mockImg from '../assets/logo_mock.PNG'
 import { Link } from 'react-router-dom'
+import { getClasses } from '../api/apiCalls'
 
 export default class AdminPage extends Component {
   constructor(props) {
@@ -11,6 +12,19 @@ export default class AdminPage extends Component {
       classes: {}
     }
   }
+
+  componentDidMount() {
+    try {
+      getClasses().then(res =>
+        this.setState({
+          classes: res
+        })
+      )
+    } catch (err) {
+      throw new Error('Something went wrong while getting classes')
+    }
+  }
+
   render() {
     //first off all check if the user has the "admin" type, before rendering aynthing
     if (this.props.user.role_id === 1) {

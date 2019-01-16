@@ -48,6 +48,10 @@ app.post('/api/createclass', authRouter.isAdmin, (req, res) => {
   res.send(queries.createClass({ name: req.body.data }))
 })
 
+app.post('/api/getclasses', queries.getClasses, (req, res) => {
+  res.send(req.mydata.rows)
+})
+
 /*
  * This is the catch all route to send the app to the browser on the first ping.
  */
