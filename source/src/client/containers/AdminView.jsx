@@ -39,7 +39,7 @@ export default class AdminPage extends Component {
           {/* Render the row with class modules and button + title if data is fetched*/}
           {this.state.classes
             ? this.state.classes.map(item => (
-                <ClassRow classObj={item} key={item.id} />
+                <ClassRow classObj={item} key={item.id} classID={item.id} />
               ))
             : null}
           {/* placeholder to be removed, it's acting as a footer at the moment to be clear what page we're on*/}

@@ -13,7 +13,7 @@ const createClass = classData => {
   pool.query(
     'INSERT INTO classes (classname, active) VALUES( ?, ?)',
     [classData.name, true],
-    (err, results, fields) => {
+    (err, results) => {
       if (err) {
         throw new Error('Whoops! could not add class to DB! \n' + err)
       } else {
@@ -24,7 +24,7 @@ const createClass = classData => {
 }
 
 async function getClasses(req, res, next) {
-  pool.query('select * from classes', (err, rows) => {
+  pool.query('SELECT * FROM classes', (err, rows) => {
     if (err) {
       res.send(new Error('Whoops! could not get classes from DB! \n' + err))
     } else {
@@ -34,7 +34,34 @@ async function getClasses(req, res, next) {
   })
 }
 
+async function updateClass(classData) {
+  pool.query(
+    'UPDATE classes SET classname = ? WHERE id = ?',
+    [classData.inp, classData],
+    (err, results) => {
+      if (err) {
+        throw new Error('Whoops! Could not update class in DB \n' + err)
+      } else {
+        return results
+      }
+    }
+  )
+}
+
+async function deleteClass(classData) {
+  pool.query('DELETE FROM classes WHERE id = ?', [classData], (err, results) => {
+    if (err) {
+      throw new Error('Whoops! Could not update class in DB \n' + err)
+    } else {
+      console.log(results)
+      return results
+    }
+  })
+}
+
 module.exports = {
   createClass,
-  getClasses
+  getClasses,
+  updateClass,
+  deleteClass
 }

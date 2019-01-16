@@ -52,6 +52,17 @@ app.post('/api/getclasses', queries.getClasses, (req, res) => {
   res.send(req.mydata.rows)
 })
 
+app.post('/api/updateclass', authRouter.isAdmin, (req, res) => {
+  queries.updateClass(req.body.data)
+  console.log(req.body.data)
+  res.send('ok')
+})
+
+app.post('/api/deleteclass', authRouter.isAdmin, (req, res) => {
+  queries.deleteClass(req.body.data)
+  res.send('ok')
+})
+
 /*
  * This is the catch all route to send the app to the browser on the first ping.
  */

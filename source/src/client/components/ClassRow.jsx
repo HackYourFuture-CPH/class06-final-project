@@ -9,7 +9,12 @@ export default class ClassRow extends Component {
           <div className='classrowleft'>
             <h5>{this.props.classObj.classname}</h5>
             <button className='editbutton'>
-              <Link className='button' to='#'>
+              <Link
+                className='button'
+                to={{
+                  pathname: '/adminview/editclass',
+                  state: { classID: this.props.classID }
+                }}>
                 Edit
               </Link>
             </button>

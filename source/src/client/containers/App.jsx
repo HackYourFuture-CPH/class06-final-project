@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import LoginButton from '../components/LoginButton'
 import Public from '../components/Public'
 import Profile from '../components/Profile'
+import EditClass from '../components/EditClass'
 import { getProfileInfo, isLoggedIn } from '../api/apiCalls'
 import AdminView from './AdminView'
 import AddModule from './AddModule'
@@ -53,6 +54,7 @@ export default class App extends Component {
               <LoginButton isAuthenticated={this.state.isAuthenticated} />
             </ul>
           </nav>
+
           <Route exact path='/' component={Public} />
           <Route
             exact
@@ -60,6 +62,7 @@ export default class App extends Component {
             render={props => <AdminView {...props} user={this.state.user} />}
           />
           <Route exact path='/adminview/createmodule' component={AddModule} />
+          <Route exact path='/adminview/editclass' component={EditClass} />
           <Route exact path='/adminview/createclass' component={AddClass} />
           <Route
             exact

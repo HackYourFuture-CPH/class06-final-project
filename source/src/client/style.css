@@ -86,6 +86,16 @@ img {
   background-color: lightgray;
 }
 
+.editClass {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+  background-color: lightgray;
+}
+
 .addClass {
   display: flex;
   flex-direction: column;
@@ -103,7 +113,12 @@ img {
 .submitclass {
   float: right;
   margin-left: auto;
-  margin-right: 2.5%;
+  padding: 6px;
+}
+
+.deleteclass {
+  float: left;
+  margin-right: auto;
   padding: 6px;
 }
 

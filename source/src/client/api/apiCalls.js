@@ -85,7 +85,46 @@ async function getClasses() {
     }
     console.log(err.config)
   })
-  console.log(res.data)
   return await res.data
 }
-export { getProfileInfo, isLoggedIn, createNewClass, getClasses }
+
+async function updateClass(data) {
+  const res = await Axios.post('/api/updateclass', { data }).catch(err => {
+    if (err.response) {
+      console.log(err.response.data)
+      console.log(err.response.status)
+      console.log(err.response.headers)
+    } else if (err.request) {
+      throw new Error('Whoops something went wring while POSTing!: ' + err.request)
+    } else {
+      throw new Error('Whoops something went wring while POSTing!: ' + err.response)
+    }
+    console.log(err.config)
+  })
+  return await res.data
+}
+
+async function deleteClass(data) {
+  const res = await Axios.post('/api/deleteclass', { data }).catch(err => {
+    if (err.response) {
+      console.log(err.response.data)
+      console.log(err.response.status)
+      console.log(err.response.headers)
+    } else if (err.request) {
+      throw new Error('Whoops something went wring while POSTing!: ' + err.request)
+    } else {
+      throw new Error('Whoops something went wring while POSTing!: ' + err.response)
+    }
+    console.log(err.config)
+  })
+  return await res.data
+}
+
+export {
+  getProfileInfo,
+  isLoggedIn,
+  createNewClass,
+  getClasses,
+  updateClass,
+  deleteClass
+}
