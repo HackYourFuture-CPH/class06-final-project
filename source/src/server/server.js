@@ -54,7 +54,6 @@ app.post('/api/getclasses', queries.getClasses, (req, res) => {
 
 app.post('/api/updateclass', authRouter.isAdmin, (req, res) => {
   queries.updateClass(req.body.data)
-  console.log(req.body.data)
   res.send('ok')
 })
 

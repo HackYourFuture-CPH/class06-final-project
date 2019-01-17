@@ -32,7 +32,13 @@ export default class AdminPage extends Component {
         <div className='adminView'>
           <div className='adminViewHead'>
             <img src={mockImg} alt='img' className='AdminLogo' />
-            <img src={this.props.user.avatar} alt='Avatar' className='adminAvatar' />
+            <Link to='/profile/edit'>
+              <img
+                src={this.props.user.avatar}
+                alt='Avatar'
+                className='adminAvatar'
+              />
+            </Link>
           </div>
           {/* Render the line where week number and months are displayed*/}
           <Months />
@@ -44,11 +50,9 @@ export default class AdminPage extends Component {
             : null}
           {/* placeholder to be removed, it's acting as a footer at the moment to be clear what page we're on*/}
           <p>AdminView</p>
-          <button className='addclassbuttonwrap'>
-            <Link className=' button' to='/adminview/createclass'>
-              Add a Class
-            </Link>
-          </button>
+          <Link className=' button' to='/adminview/createclass'>
+            <button className='addclassbuttonwrap'>Add a Class</button>
+          </Link>
         </div>
       )
     } else {

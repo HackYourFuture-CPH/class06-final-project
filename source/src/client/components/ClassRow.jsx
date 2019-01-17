@@ -8,22 +8,18 @@ export default class ClassRow extends Component {
         <div className='classrow'>
           <div className='classrowleft'>
             <h5>{this.props.classObj.classname}</h5>
-            <button className='editbutton'>
-              <Link
-                className='button'
-                to={{
-                  pathname: '/adminview/editclass',
-                  state: { classID: this.props.classID }
-                }}>
-                Edit
-              </Link>
-            </button>
-          </div>
-          <button className='createModule'>
-            <Link className='button' to='/adminview/createmodule'>
-              Add module
+            <Link
+              className='button'
+              to={{
+                pathname: '/adminview/editclass',
+                state: { classID: this.props.classID }
+              }}>
+              <button className='editbutton'>Edit</button>
             </Link>
-          </button>
+          </div>
+          <Link className='button' to='/adminview/createmodule'>
+            <button className='createModule'>Add module</button>
+          </Link>
         </div>
       </>
     )

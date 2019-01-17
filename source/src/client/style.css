@@ -49,19 +49,19 @@ img {
 
 .thisMonth {
   margin: 0 auto;
-  width: 47.5%;
+  width: 49.5%;
   border-bottom-style: solid;
 }
 
 .nextMonth {
   margin: 0 auto;
-  width: 47.5%;
+  width: 50%;
   border-bottom-style: solid;
 }
 
 .weekNum {
   line-height: 0;
-  margin: 0 1.5%;
+  /* margin: 0 1.5%; */
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -139,4 +139,31 @@ img {
 .editbutton {
   margin-left: 2px;
   height: 35%;
+}
+
+.editprofile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+  background-color: lightgray;
+}
+
+.namebar {
+  display: flex;
+  background-color: lightgray;
+  justify-content: space-evenly;
+}
+
+.namerole p {
+  margin-top: 0;
+}
+.namerole h4 {
+  margin-bottom: 0;
+}
+
+.useravatar {
+  border-radius: 50%;
 }
