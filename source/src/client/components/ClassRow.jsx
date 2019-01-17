@@ -12,12 +12,23 @@ export default class ClassRow extends Component {
               className='button'
               to={{
                 pathname: '/adminview/editclass',
-                state: { classID: this.props.classID }
+                state: {
+                  classID: this.props.classObj.id,
+                  className: this.props.classObj.classname
+                }
               }}>
               <button className='editbutton'>Edit</button>
             </Link>
           </div>
-          <Link className='button' to='/adminview/createmodule'>
+          <Link
+            className='button'
+            to={{
+              pathname: '/adminview/createmodule',
+              state: {
+                classID: this.props.classObj.id,
+                className: this.props.classObj.classname
+              }
+            }}>
             <button className='createModule'>Add module</button>
           </Link>
         </div>

@@ -8,7 +8,7 @@ export default class EditClass extends Component {
     super(props)
     this.state = {
       redirect: false,
-      inp: '',
+      inp: props.location.state.className,
       isValid: '',
       id: props.location.state.classID
     }
@@ -22,8 +22,7 @@ export default class EditClass extends Component {
 
   onDeleteClickHandler = () => {
     const id = this.state.id
-    deleteClass(id)
-    this.setState({ redirect: true })
+    deleteClass(id).then(this.setState({ redirect: true }))
   }
 
   onSubmitClickHandler = () => {
@@ -33,8 +32,7 @@ export default class EditClass extends Component {
       this.setState({
         inp: ''
       })
-      updateClass(data)
-      this.setState({ redirect: true, isValid: null })
+      updateClass(data).then(this.setState({ redirect: true, isValid: null }))
     } else {
       this.setState({ isValid: 'notValid' })
     }
