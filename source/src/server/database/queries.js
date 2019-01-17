@@ -37,7 +37,7 @@ async function getClasses(req, res, next) {
 async function updateClass(classData) {
   pool.query(
     'UPDATE classes SET classname = ? WHERE id = ?',
-    [classData.inp, classData],
+    [classData.inp, classData.id],
     (err, results) => {
       if (err) {
         throw new Error('Whoops! Could not update class in DB \n' + err)
@@ -53,7 +53,6 @@ async function deleteClass(classData) {
     if (err) {
       throw new Error('Whoops! Could not update class in DB \n' + err)
     } else {
-      console.log(results)
       return results
     }
   })
