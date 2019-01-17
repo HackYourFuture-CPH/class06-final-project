@@ -15,7 +15,8 @@ ul {
 }
 
 img {
-  width: 150px;
+  height: 120px;
+  width: 120px;
 }
 .userinfo {
   display: inline-flex;
@@ -75,11 +76,22 @@ img {
 .classrow {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .addModule {
   margin: auto;
   width: 45%;
+  padding: 10px;
+  background-color: lightgray;
+}
+
+.editClass {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  width: 20%;
   padding: 10px;
   background-color: lightgray;
 }
@@ -101,6 +113,30 @@ img {
 .submitclass {
   float: right;
   margin-left: auto;
-  margin-right: 2.5%;
   padding: 6px;
+}
+
+.deleteclass {
+  float: left;
+  margin-right: auto;
+  padding: 6px;
+}
+
+.notValid {
+  border: 5px solid red;
+}
+
+.createModule {
+  height: 20%;
+}
+
+.classrowleft {
+  align-items: center;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.editbutton {
+  margin-left: 2px;
+  height: 35%;
 }

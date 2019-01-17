@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import InputField from '../components/InputField'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { createNewClass } from '../api/apiCalls'
 
 export default class AddClass extends Component {
   constructor(props) {
     super(props)
-    this.state = { inp: '' }
+    this.state = {
+      redirect: false,
+      inp: '',
+      isValid: ''
+    }
   }
 
   handleInpChange = e => {
@@ -14,11 +19,17 @@ export default class AddClass extends Component {
     })
   }
 
-  onSubmitClickHandler = e => {
-    // const inp = this.state.inp //This is meant to be used in CRUD command to create a class.
-    this.setState({
-      inp: ''
-    })
+  onSubmitClickHandler = () => {
+    const inp = this.state.inp
+    if (inp.length >= 3) {
+      this.setState({
+        inp: ''
+      })
+      createNewClass(inp)
+      this.setState({ redirect: true, isValid: null })
+    } else {
+      this.setState({ isValid: 'notValid' })
+    }
   }
 
   onKeyChange = e => {
@@ -26,7 +37,12 @@ export default class AddClass extends Component {
       this.onSubmitClickHandler()
     }
   }
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect to='/adminview' />
+    }
+
     return (
       <div className='addClass'>
         <h3 id='classtitle'>Add Class</h3>
@@ -34,17 +50,15 @@ export default class AddClass extends Component {
           <p>Enter Name</p>
           <InputField
             type='text'
-            className='inpfield'
+            className={'inpfield ' + this.state.isValid}
             placeholder='Class Name'
             passedfunc={this.handleInpChange}
             value={this.state.inp}
             onKeyPress={this.onKeyChange}
           />
         </div>
-        <button className='submitclass'>
-          <Link className='button' to='/adminview'>
-            Add Class
-          </Link>
+        <button className='submitclass' onClick={this.onSubmitClickHandler}>
+          Add Class
         </button>
       </div>
     )
