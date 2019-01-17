@@ -58,9 +58,23 @@ async function deleteClass(classData) {
   })
 }
 
+async function getModuleOptions(req, res, next) {
+  pool.query('SELECT * FROM modules', (err, rows) => {
+    if (err) {
+      throw new Error(
+        'Whoops! Something went wrong while fetching module options \n' + err
+      )
+    } else {
+      req.mydata = { rows }
+      next()
+    }
+  })
+}
+
 module.exports = {
   createClass,
   getClasses,
   updateClass,
-  deleteClass
+  deleteClass,
+  getModuleOptions
 }

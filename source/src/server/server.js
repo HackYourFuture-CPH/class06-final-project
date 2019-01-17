@@ -62,6 +62,10 @@ app.post('/api/deleteclass', authRouter.isAdmin, (req, res) => {
   res.send('ok')
 })
 
+app.post('/api/getmoduleoptions', queries.getModuleOptions, (req, res) => {
+  res.send(req.mydata.rows)
+})
+
 /*
  * This is the catch all route to send the app to the browser on the first ping.
  */

@@ -25,13 +25,13 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 4,
-          title: 'javascript 2',
+          title: 'Javascript 2',
           description: null,
           length: 4
         },
         {
           id: 5,
-          title: 'javascript 3',
+          title: 'Javascript 3',
           description: null,
           length: 4
         },
