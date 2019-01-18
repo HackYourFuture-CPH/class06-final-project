@@ -1,5 +1,6 @@
 import Axios from 'axios'
 
+//General/universal functions
 const errfunc = err => {
   if (err.response) {
     // The request was made and the server responded with a status code
@@ -21,13 +22,7 @@ const errfunc = err => {
   console.log(err.config)
 }
 
-async function getProfileInfo() {
-  const response = await Axios.post('/api/profile', { withCredentials: true }).catch(
-    err => errfunc(err)
-  )
-  return response
-}
-
+//Check functions
 async function isLoggedIn() {
   const response = await Axios.post('/api/profile')
     .catch(err => {
@@ -55,6 +50,38 @@ async function isLoggedIn() {
   return await response
 }
 
+//Get information
+async function getProfileInfo() {
+  const response = await Axios.post('/api/profile', { withCredentials: true }).catch(
+    err => errfunc(err)
+  )
+  return response
+}
+
+async function getMentors() {
+  const response = await Axios.post('/api/getmentors').catch(err => errfunc(err))
+  return response
+}
+
+async function getClasses() {
+  const res = await Axios.post('/api/getclasses').catch(err => errfunc(err))
+  return await res.data
+}
+
+async function getModuleOptions() {
+  const res = await Axios.post('/api/getmoduleoptions').catch(err => errfunc(err))
+  return await res.data
+}
+
+//Update functions
+async function updateClass(data) {
+  const res = await Axios.post('/api/updateclass', { data }).catch(err =>
+    errfunc(err)
+  )
+  return await res.data
+}
+
+//Create functions
 async function createNewClass(params) {
   console.log(params)
   const response = await Axios.post('/api/createclass', { data: params }).catch(
@@ -63,27 +90,11 @@ async function createNewClass(params) {
   return await response.data
 }
 
-async function getClasses() {
-  const res = await Axios.post('/api/getclasses').catch(err => errfunc(err))
-  return await res.data
-}
-
-async function updateClass(data) {
-  const res = await Axios.post('/api/updateclass', { data }).catch(err =>
-    errfunc(err)
-  )
-  return await res.data
-}
-
+//Delete functions
 async function deleteClass(data) {
   const res = await Axios.post('/api/deleteclass', { data }).catch(err =>
     errfunc(err)
   )
-  return await res.data
-}
-
-async function getModuleOptions() {
-  const res = await Axios.post('/api/getmoduleoptions').catch(err => errfunc(err))
   return await res.data
 }
 
@@ -94,5 +105,6 @@ export {
   getClasses,
   updateClass,
   deleteClass,
-  getModuleOptions
+  getModuleOptions,
+  getMentors
 }
