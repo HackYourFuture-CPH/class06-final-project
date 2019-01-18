@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import WeekPicker from '../components/WeekPicker'
 import { getModuleOptions } from '../api/apiCalls'
 import Select from 'react-select'
+import { Link } from 'react-router-dom'
 
 export default class AddModule extends Component {
   constructor(props) {
@@ -48,6 +49,21 @@ export default class AddModule extends Component {
           <h3>{this.state.className}</h3>
           <WeekPicker updateParent={this.updateDates} />
         </div>
+        <Link to='/adminview'>
+          <button>Delete this module</button>
+        </Link>
+        <Link
+          className='button'
+          to={{
+            pathname: '/adminview/assignmentor',
+            state: {
+              classID: this.state.classID,
+              className: this.state.className,
+              moduleName: this.state.selectedOption
+            }
+          }}>
+          <button disabled={!this.state.selectedOption}>Assign Mentor</button>
+        </Link>
       </div>
     )
   }
