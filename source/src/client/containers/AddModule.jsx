@@ -13,7 +13,8 @@ export default class AddModule extends Component {
       to: null,
       classID: props.location.state.classID,
       className: props.location.state.className,
-      selectedOption: null
+      selectedOption: null,
+      numberOfWeeks: 0
     }
   }
 
@@ -27,7 +28,11 @@ export default class AddModule extends Component {
 
   updateDates = days => {
     if (days.from !== this.state.from || days.to !== this.state.to)
-      this.setState({ from: days.from, to: days.to })
+      this.setState({
+        from: days.from,
+        to: days.to,
+        numberOfWeeks: days.numberOfWeeks
+      })
   }
 
   render() {
@@ -59,10 +64,13 @@ export default class AddModule extends Component {
             state: {
               classID: this.state.classID,
               className: this.state.className,
-              moduleName: this.state.selectedOption
+              moduleName: this.state.selectedOption,
+              numberOfWeeks: this.state.numberOfWeeks
             }
           }}>
-          <button disabled={!this.state.selectedOption}>Assign Mentor</button>
+          <button disabled={!this.state.selectedOption || !this.state.numberOfWeeks}>
+            Assign Mentor
+          </button>
         </Link>
       </div>
     )

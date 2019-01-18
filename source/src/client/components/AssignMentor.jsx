@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getMentors } from '../api/apiCalls'
 
 export default class AssignMentor extends Component {
   constructor(props) {
@@ -6,11 +7,19 @@ export default class AssignMentor extends Component {
     this.state = {
       classID: this.props.location.state.classID,
       className: this.props.location.state.className,
-      moduleName: this.props.location.state.moduleName.label
+      moduleName: this.props.location.state.moduleName.label,
+      mentors: [],
+      numberOfWeeks: this.props.location.state.numberOfWeeks
     }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    getMentors().then(res => this.setState({ mentors: res.data.rows }))
+  }
+
+  handleButtonClick = () => {
+    //post request to server for assigning mentor to module for itteration 1, then if there's time for assigning mentor to session.
+  }
 
   render() {
     return (
@@ -18,8 +27,17 @@ export default class AssignMentor extends Component {
         <h2>{this.state.moduleName}</h2>
         <h3>{this.state.className}</h3>
         <p>Mentor Assignment</p>
-        <div>
-          <div>placeholder</div>
+        <div className='mentorContainer'>
+          {this.state.mentors.map(item => (
+            <div className='mentorRow' key={item.id}>
+              {item.name}
+              <div>
+                <button className='assignbtn' onClick={this.handleButtonClick}>
+                  Assign
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     )

@@ -21,6 +21,7 @@ export default class Example extends React.Component {
     return {
       from: undefined,
       to: undefined,
+      numberOfWeeks: 0,
       locale: moment.locale('en-gb')
     }
   }
@@ -36,7 +37,8 @@ export default class Example extends React.Component {
     this.setState(this.getInitialState())
     this.props.updateParent({
       from: null,
-      to: null
+      to: null,
+      numberOfWeeks: null
     })
   }
 
@@ -44,7 +46,11 @@ export default class Example extends React.Component {
     if (this.state.from && this.state.to !== undefined) {
       this.props.updateParent({
         from: this.state.from,
-        to: this.state.to
+        to: this.state.to,
+        numberOfWeeks: moment(this.state.to, 'DD-MM-YYYY').diff(
+          moment(this.state.from, 'DD-MM-YYYY'),
+          'weeks'
+        )
       })
     }
   }
