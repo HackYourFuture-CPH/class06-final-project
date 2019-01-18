@@ -28,7 +28,7 @@ async function getClasses(req, res, next) {
     if (err) {
       res.send(new Error('Whoops! could not get classes from DB! \n' + err))
     } else {
-      req.mydata = { rows }
+      res.mydata = { rows }
       next()
     }
   })
@@ -65,7 +65,18 @@ async function getModuleOptions(req, res, next) {
         'Whoops! Something went wrong while fetching module options \n' + err
       )
     } else {
-      req.mydata = { rows }
+      res.mydata = { rows }
+      next()
+    }
+  })
+}
+
+async function getMentors(req, res, next) {
+  pool.query('SELECT * FROM users WHERE role_id = 2', (err, rows) => {
+    if (err) {
+      throw new Error('Whoops! Something went wrong while fetching mentors \n' + err)
+    } else {
+      res.mydata = { rows }
       next()
     }
   })
@@ -76,5 +87,6 @@ module.exports = {
   getClasses,
   updateClass,
   deleteClass,
-  getModuleOptions
+  getModuleOptions,
+  getMentors
 }

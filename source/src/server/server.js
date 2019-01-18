@@ -49,7 +49,7 @@ app.post('/api/createclass', authRouter.isAdmin, (req, res) => {
 })
 
 app.post('/api/getclasses', queries.getClasses, (req, res) => {
-  res.send(req.mydata.rows)
+  res.send(res.mydata.rows)
 })
 
 app.post('/api/updateclass', authRouter.isAdmin, (req, res) => {
@@ -63,9 +63,12 @@ app.post('/api/deleteclass', authRouter.isAdmin, (req, res) => {
 })
 
 app.post('/api/getmoduleoptions', queries.getModuleOptions, (req, res) => {
-  res.send(req.mydata.rows)
+  res.send(res.mydata.rows)
 })
 
+app.post('/api/getmentors', queries.getMentors, (req, res) => {
+  res.send(res.mydata)
+})
 /*
  * This is the catch all route to send the app to the browser on the first ping.
  */
