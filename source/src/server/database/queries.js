@@ -52,9 +52,15 @@ function createClassModule(req, res, next) {
                   'Something went wrong while createing a session! \n' + err
                 )
               } else {
-                sessions.push(rows)
+                sessions.push({
+                  row: rows.insertId,
+                  date: moment(data.start, 'YYYY-MM-DD')
+                    .add(7 * (i + 1) - 7, 'days')
+                    .format('YYYY-MM-DD')
+                })
                 res.mydata = { sessions, results }
                 if (res.mydata.sessions.length > data.numberOfWeeks) {
+                  console.log({ sessions })
                   next()
                 }
               }
