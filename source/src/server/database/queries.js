@@ -54,7 +54,7 @@ function createClassModule(req, res, next) {
               } else {
                 sessions.push(rows)
                 res.mydata = { sessions, results }
-                if (res.mydata.sessions.length === data.numberOfWeeks) {
+                if (res.mydata.sessions.length > data.numberOfWeeks) {
                   next()
                 }
               }
