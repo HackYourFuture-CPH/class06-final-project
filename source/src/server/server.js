@@ -1,4 +1,5 @@
 //Initializes dot files so we can use dotenv
+
 require('dotenv').config({ path: '../../.env' })
 const express = require('express')
 const authRouter = require('./auth/routes.js')
@@ -14,6 +15,7 @@ const passport = require('passport')
 const port = process.env.PORT || 9001
 const buildPath = path.join(__dirname, '../../build')
 const app = express()
+
 app.use(bp.urlencoded({ extended: true }))
 app.use(bp.json())
 app.use(express.static(buildPath))
@@ -28,6 +30,7 @@ app.use(
 // Then we initialize passport and start the sessions.
 app.use(passport.initialize())
 app.use(passport.session())
+
 /*
  * Here we make sure that every route that comes from the router.js file start with /auth,
  * to make it easialy distinguishable from other routes.
@@ -53,13 +56,11 @@ app.post('/api/getclasses', queries.getClasses, (req, res) => {
 })
 
 app.post('/api/updateclass', authRouter.isAdmin, (req, res) => {
-  queries.updateClass(req.body.data)
-  res.send('ok')
+  res.send(queries.updateClass(req.body.data))
 })
 
 app.post('/api/deleteclass', authRouter.isAdmin, (req, res) => {
-  queries.deleteClass(req.body.data)
-  res.send('ok')
+  res.send(queries.deleteClass(req.body.data))
 })
 
 app.post('/api/getmoduleoptions', queries.getModuleOptions, (req, res) => {
@@ -69,6 +70,16 @@ app.post('/api/getmoduleoptions', queries.getModuleOptions, (req, res) => {
 app.post('/api/getmentors', queries.getMentors, (req, res) => {
   res.send(res.mydata)
 })
+
+app.post(
+  '/api/createNewClassModule',
+  authRouter.isAdmin,
+  queries.createClassModule,
+  (req, res) => {
+    res.send(res.mydata)
+  }
+)
+
 /*
  * This is the catch all route to send the app to the browser on the first ping.
  */

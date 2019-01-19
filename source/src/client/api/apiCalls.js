@@ -83,11 +83,18 @@ async function updateClass(data) {
 
 //Create functions
 async function createNewClass(params) {
-  console.log(params)
   const response = await Axios.post('/api/createclass', { data: params }).catch(
     err => errfunc(err)
   )
   return await response.data
+}
+
+async function createNewClassModule(data) {
+  const res = await Axios.post('/api/createNewClassModule', { data }).catch(err => {
+    errfunc(err)
+  })
+  console.log(res.data)
+  return await res.data
 }
 
 //Delete functions
@@ -106,5 +113,6 @@ export {
   updateClass,
   deleteClass,
   getModuleOptions,
-  getMentors
+  getMentors,
+  createNewClassModule
 }

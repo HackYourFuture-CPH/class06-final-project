@@ -1,4 +1,5 @@
 const mysql = require('mysql')
+const moment = require('moment')
 
 const pool = mysql.createPool({
   connectionLimit: 100,
@@ -18,6 +19,48 @@ const createClass = classData => {
         throw new Error('Whoops! could not add class to DB! \n' + err)
       } else {
         return results
+      }
+    }
+  )
+}
+
+function createClassModule(req, res, next) {
+  let sessions = []
+  const data = req.body.data
+  pool.query(
+    'INSERT INTO classes_modules(classid, moduleid, start_date, end_date) VALUES( ?, ?, ?, ?)',
+    [data.classID, data.moduleID, data.start, data.end],
+    (err, results) => {
+      if (err) {
+        throw new Error(
+          'Something went wrong while createing a class module! \n' + err
+        )
+      } else {
+        for (let i = 0; i <= data.numberOfWeeks; i++) {
+          pool.query(
+            'INSERT INTO sessions(module_id, session_date, classes_modules_id) VALUES(?, ?, ?)',
+            [
+              data.moduleID,
+              moment(data.start, 'YYYY-MM-DD')
+                .add(7 * (i + 1) - 7, 'days')
+                .format('YYYY-MM-DD'),
+              results.insertId
+            ],
+            (err, rows) => {
+              if (err) {
+                throw new Error(
+                  'Something went wrong while createing a session! \n' + err
+                )
+              } else {
+                sessions.push(rows)
+                res.mydata = { sessions, results }
+                if (res.mydata.sessions.length === data.numberOfWeeks) {
+                  next()
+                }
+              }
+            }
+          )
+        }
       }
     }
   )
@@ -88,5 +131,6 @@ module.exports = {
   updateClass,
   deleteClass,
   getModuleOptions,
-  getMentors
+  getMentors,
+  createClassModule
 }
