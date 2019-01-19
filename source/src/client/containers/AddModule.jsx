@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import WeekPicker from '../components/WeekPicker'
-import { getModuleOptions, createNewClassModule } from '../api/apiCalls'
+import { getModuleOptions } from '../api/apiCalls'
 import Select from 'react-select'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 
 export default class AddModule extends Component {
   constructor(props) {
@@ -35,21 +34,6 @@ export default class AddModule extends Component {
         numberOfWeeks: days.numberOfWeeks
       })
   }
-
-  handleShowButtonClick = () => {
-    const data = {
-      classID: this.state.classID,
-      className: this.state.className,
-      moduleName: this.state.selectedOption.label,
-      moduleID: this.state.selectedOption.value,
-      start: moment(this.state.from).format('YYYY-MM-DD'),
-      end: moment(this.state.to).format('YYYY-MM-DD'),
-      numberOfWeeks: this.state.numberOfWeeks
-    }
-    //post request to server for assigning mentor to module for itteration 1, then if there's time for assigning mentor to session.
-    createNewClassModule(data)
-  }
-
   render() {
     const options = []
     this.state.moduleOptions.map(item => {
@@ -88,8 +72,7 @@ export default class AddModule extends Component {
             }}>
             <button
               className='createClass'
-              disabled={!this.state.selectedOption || !this.state.numberOfWeeks}
-              onClick={this.handleShowButtonClick}>
+              disabled={!this.state.selectedOption || !this.state.numberOfWeeks}>
               Create Class and Assign Mentor(s)
             </button>
           </Link>
