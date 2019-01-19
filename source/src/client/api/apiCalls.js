@@ -104,6 +104,13 @@ async function deleteClass(data) {
   return await res.data
 }
 
+async function assignMentor(data) {
+  const res = await Axios.post('/api/assignMentor', { data }).catch(err => {
+    errfunc(err)
+  })
+  return await res.data
+}
+
 export {
   getProfileInfo,
   isLoggedIn,
@@ -113,5 +120,6 @@ export {
   deleteClass,
   getModuleOptions,
   getMentors,
-  createNewClassModule
+  createNewClassModule,
+  assignMentor
 }
