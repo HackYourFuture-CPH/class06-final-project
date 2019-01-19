@@ -93,7 +93,6 @@ async function createNewClassModule(data) {
   const res = await Axios.post('/api/createNewClassModule', { data }).catch(err => {
     errfunc(err)
   })
-  console.log(res.data)
   return await res.data
 }
 

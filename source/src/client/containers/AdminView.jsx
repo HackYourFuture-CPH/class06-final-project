@@ -4,12 +4,16 @@ import ClassRow from '../components/ClassRow'
 import mockImg from '../assets/logo_mock.PNG'
 import { Link } from 'react-router-dom'
 import { getClasses } from '../api/apiCalls'
+import moment from 'moment'
 
 export default class AdminPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      classes: undefined
+      classes: undefined,
+      numberOfWeeks: 7,
+      startDate: moment(),
+      endDate: moment().add(8, 'weeks')
     }
   }
 
@@ -41,7 +45,10 @@ export default class AdminPage extends Component {
             </Link>
           </div>
           {/* Render the line where week number and months are displayed*/}
-          <Months />
+          <Months
+            weeks={this.state.numberOfWeeks + 1}
+            dates={{ start: this.state.startDate, end: this.state.endDate }}
+          />
           {/* Render the row with class modules and button + title if data is fetched*/}
           {this.state.classes
             ? this.state.classes.map(item => (
