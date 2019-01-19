@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { getMentors, createNewClassModule } from '../api/apiCalls'
+import { getMentors } from '../api/apiCalls'
 import Months from './Months'
-import moment from 'moment'
+// import moment from 'moment'
 
 export default class AssignMentor extends Component {
   constructor(props) {
@@ -15,26 +15,11 @@ export default class AssignMentor extends Component {
       numberOfWeeks: this.props.location.state.numberOfWeeks,
       startDate: this.props.location.state.startDate,
       endDate: this.props.location.state.endDate,
-      sessions: null
+      modulesSessions: this.props.location.state.modulesSessions
     }
-  }
-
-  createSessions = () => {
-    const data = {
-      classID: this.state.classID,
-      className: this.state.className,
-      moduleName: this.state.moduleName,
-      moduleID: this.state.moduleID,
-      start: moment(this.state.startDate).format('YYYY-MM-DD'),
-      end: moment(this.state.endDate).format('YYYY-MM-DD'),
-      numberOfWeeks: this.state.numberOfWeeks
-    }
-    //post request to server for assigning mentor to module for itteration 1, then if there's time for assigning mentor to session.
-    createNewClassModule(data).then(res => this.setState({ sessions: res }))
   }
 
   componentDidMount() {
-    this.createSessions()
     getMentors().then(res => this.setState({ mentors: res.data.rows }))
   }
 
@@ -45,6 +30,7 @@ export default class AssignMentor extends Component {
   render() {
     const btnWeeks = []
     for (let i = 0; i <= this.state.numberOfWeeks; i++) {
+      // console.log(this.state.modulesSessions.sessions[i])
       btnWeeks.push(
         <button
           className='assignbtn'

@@ -1,21 +1,40 @@
 import React, { Component } from 'react'
 import WeekPicker from '../components/WeekPicker'
-import { getModuleOptions } from '../api/apiCalls'
+import { getModuleOptions, createNewClassModule } from '../api/apiCalls'
 import Select from 'react-select'
-import { Link } from 'react-router-dom'
+import moment from 'moment'
+import { Link, Redirect } from 'react-router-dom'
 
 export default class AddModule extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      redirect: false,
       moduleOptions: [],
       from: null,
       to: null,
       classID: props.location.state.classID,
       className: props.location.state.className,
       selectedOption: null,
-      numberOfWeeks: 0
+      numberOfWeeks: 0,
+      modulesSessions: null
     }
+  }
+
+  handleBtnClick = () => {
+    const data = {
+      classID: this.state.classID,
+      className: this.state.className,
+      moduleName: this.state.selectedOption.label,
+      moduleID: this.state.selectedOption.value,
+      start: moment(this.state.from).format('YYYY-MM-DD'),
+      end: moment(this.state.to).format('YYYY-MM-DD'),
+      numberOfWeeks: this.state.numberOfWeeks
+    }
+    //post request to server for assigning mentor to module for itteration 1, then if there's time for assigning mentor to session.
+    createNewClassModule(data).then(res =>
+      this.setState({ modulesSessions: res, redirect: true })
+    )
   }
 
   handleChange = selectedOption => {
@@ -35,6 +54,25 @@ export default class AddModule extends Component {
       })
   }
   render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/adminview/assignmentor',
+            state: {
+              classID: this.state.classID,
+              className: this.state.className,
+              moduleName: this.state.selectedOption,
+              numberOfWeeks: this.state.numberOfWeeks,
+              startDate: this.state.from,
+              endDate: this.state.to,
+              modulesSessions: this.state.modulesSessions
+            }
+          }}
+        />
+      )
+    }
+
     const options = []
     this.state.moduleOptions.map(item => {
       return options.push({ value: item.id, label: item.title })
@@ -57,25 +95,13 @@ export default class AddModule extends Component {
           <Link to='/adminview'>
             <button>Delete this module</button>
           </Link>
-          <Link
-            className='button'
-            to={{
-              pathname: '/adminview/assignmentor',
-              state: {
-                classID: this.state.classID,
-                className: this.state.className,
-                moduleName: this.state.selectedOption,
-                numberOfWeeks: this.state.numberOfWeeks,
-                startDate: this.state.from,
-                endDate: this.state.to
-              }
-            }}>
-            <button
-              className='createClass'
-              disabled={!this.state.selectedOption || !this.state.numberOfWeeks}>
-              Create Class and Assign Mentor(s)
-            </button>
-          </Link>
+
+          <button
+            className='createClass'
+            disabled={!this.state.selectedOption || !this.state.numberOfWeeks}
+            onClick={this.handleBtnClick}>
+            Create Class and Assign Mentor(s)
+          </button>
         </div>
       </div>
     )
