@@ -56,7 +56,11 @@ router.get('/google/logout', (req, res) => {
  * It checks if the cookie is valid and then redirects to home path.
  */
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-  res.redirect('/')
+  if (process.env.RUNENV === 'dev') {
+    res.redirect('http://localhost:3000')
+  } else {
+    res.redirect('/')
+  }
 })
 
 module.exports = { router, authCheck, isAdmin }
