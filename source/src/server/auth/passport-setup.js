@@ -66,7 +66,6 @@ passport.use(
                 profile._json.image.url
               ],
               (err, results, fields) => {
-                console.log(results)
                 if (err) {
                   throw new Error('Whoops! could not add Google User to DB!' + err)
                 } else {

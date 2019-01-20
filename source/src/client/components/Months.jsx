@@ -41,7 +41,6 @@ export default class Months extends Component {
     for (let i = 0; i < this.state.weeks; i++) {
       weekDiv.push(<p key={i}>{i + 1}</p>)
     }
-    // console.log(this.state.weeks[this.state.weeks.length - 1])
     return (
       <div className='monthComp'>
         <div className='monthName'>
