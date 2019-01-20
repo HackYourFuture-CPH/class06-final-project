@@ -25,8 +25,7 @@ export default class AddClass extends Component {
       this.setState({
         inp: ''
       })
-      createNewClass(inp)
-      this.setState({ redirect: true, isValid: null })
+      createNewClass(inp).then(this.setState({ redirect: true, isValid: null }))
     } else {
       this.setState({ isValid: 'notValid' })
     }

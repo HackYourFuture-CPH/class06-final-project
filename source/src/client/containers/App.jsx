@@ -4,10 +4,12 @@ import LoginButton from '../components/LoginButton'
 import Public from '../components/Public'
 import Profile from '../components/Profile'
 import EditClass from '../components/EditClass'
+import EditProfile from '../components/EditProfile'
 import { getProfileInfo, isLoggedIn } from '../api/apiCalls'
 import AdminView from './AdminView'
 import AddModule from './AddModule'
 import AddClass from './AddClass'
+import AssignMentor from '../components/AssignMentor'
 
 export default class App extends Component {
   constructor(props) {
@@ -68,6 +70,16 @@ export default class App extends Component {
             exact
             path='/profile'
             render={props => <Profile {...props} user={this.state.user} />}
+          />
+          <Route
+            exact
+            path='/profile/edit'
+            render={props => <EditProfile {...props} user={this.state.user} />}
+          />
+          <Route
+            exact
+            path='/adminview/assignmentor'
+            render={props => <AssignMentor {...props} />}
           />
         </div>
       </Router>

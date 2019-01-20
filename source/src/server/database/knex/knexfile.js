@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../../../.env' })
+require('dotenv').config({ path: '../../../../.env' })
 // Update with your config settings.
 
 module.exports = {
