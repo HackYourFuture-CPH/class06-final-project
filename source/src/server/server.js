@@ -80,6 +80,12 @@ app.post(
   }
 )
 
+app.post('/api/assignMentor', authRouter.isAdmin, (req, res) => {
+  queries.assignMentor(req.body.data)
+  // res.send(res.mydate)
+  res.sendStatus(200)
+})
+
 /*
  * This is the catch all route to send the app to the browser on the first ping.
  */

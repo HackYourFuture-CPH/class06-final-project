@@ -24,7 +24,7 @@ const createClass = classData => {
   )
 }
 
-function createClassModule(req, res, next) {
+const createClassModule = (req, res, next) => {
   let sessions = []
   const data = req.body.data
   pool.query(
@@ -58,9 +58,8 @@ function createClassModule(req, res, next) {
                     .add(7 * (i + 1) - 7, 'days')
                     .format('YYYY-MM-DD')
                 })
-                res.mydata = { sessions, results }
+                res.mydata = { sessions, insertId: results.insertId }
                 if (res.mydata.sessions.length > data.numberOfWeeks) {
-                  console.log({ sessions })
                   next()
                 }
               }
@@ -72,7 +71,21 @@ function createClassModule(req, res, next) {
   )
 }
 
-async function getClasses(req, res, next) {
+const assignMentor = data => {
+  pool.query(
+    'INSERT INTO sessions_mentors(session_id, mentor_id) VALUES(?, ?)',
+    [data.date.row, data.mentor.id],
+    (err, results) => {
+      if (err) {
+        throw new Error('Whoops! Could not update class in DB \n' + err)
+      } else {
+        return results
+      }
+    }
+  )
+}
+
+const getClasses = (req, res, next) => {
   pool.query('SELECT * FROM classes', (err, rows) => {
     if (err) {
       res.send(new Error('Whoops! could not get classes from DB! \n' + err))
@@ -83,7 +96,7 @@ async function getClasses(req, res, next) {
   })
 }
 
-async function updateClass(classData) {
+const updateClass = classData => {
   pool.query(
     'UPDATE classes SET classname = ? WHERE id = ?',
     [classData.inp, classData.id],
@@ -97,7 +110,7 @@ async function updateClass(classData) {
   )
 }
 
-async function deleteClass(classData) {
+const deleteClass = classData => {
   pool.query('DELETE FROM classes WHERE id = ?', [classData], (err, results) => {
     if (err) {
       throw new Error('Whoops! Could not update class in DB \n' + err)
@@ -107,7 +120,7 @@ async function deleteClass(classData) {
   })
 }
 
-async function getModuleOptions(req, res, next) {
+const getModuleOptions = (req, res, next) => {
   pool.query('SELECT * FROM modules', (err, rows) => {
     if (err) {
       throw new Error(
@@ -120,7 +133,7 @@ async function getModuleOptions(req, res, next) {
   })
 }
 
-async function getMentors(req, res, next) {
+const getMentors = (req, res, next) => {
   pool.query('SELECT * FROM users WHERE role_id = 2', (err, rows) => {
     if (err) {
       throw new Error('Whoops! Something went wrong while fetching mentors \n' + err)
@@ -138,5 +151,6 @@ module.exports = {
   deleteClass,
   getModuleOptions,
   getMentors,
-  createClassModule
+  createClassModule,
+  assignMentor
 }

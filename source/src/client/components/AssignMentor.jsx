@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { getMentors } from '../api/apiCalls'
 import Months from './Months'
-// import moment from 'moment'
+import moment from 'moment'
+import AssignBtn from './AssignBtn'
 
 export default class AssignMentor extends Component {
   constructor(props) {
@@ -23,23 +24,10 @@ export default class AssignMentor extends Component {
     getMentors().then(res => this.setState({ mentors: res.data.rows }))
   }
 
-  handleAssignButtonClick = data => {
-    console.log(data)
-  }
-
   render() {
-    const btnWeeks = []
-    for (let i = 0; i <= this.state.numberOfWeeks; i++) {
-      // console.log(this.state.modulesSessions.sessions[i])
-      btnWeeks.push(
-        <button
-          className='assignbtn'
-          key={i}
-          onClick={() => this.handleAssignButtonClick(i)}>
-          Assign
-        </button>
-      )
-    }
+    const sortedArray = this.state.modulesSessions.sessions.sort(
+      (a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD')
+    )
 
     return (
       <div className='addClass'>
@@ -55,7 +43,11 @@ export default class AssignMentor extends Component {
           {this.state.mentors.map(item => (
             <div className='mentorRow' key={item.id}>
               <p className='mentorRowBtn'>{item.name}</p>
-              <div className='classNameBtn'>{btnWeeks}</div>
+              <div className='classNameBtn'>
+                {sortedArray.map((dateItem, i) => {
+                  return <AssignBtn key={i} date={dateItem} mentor={item} />
+                })}
+              </div>
             </div>
           ))}
         </div>
