@@ -73,11 +73,25 @@ async function getModuleOptions() {
   return await res.data
 }
 
+async function getRelevantClassModules() {
+  const res = await Axios.post('/api/getClassModules').catch(err => {
+    errfunc(err)
+  })
+  return await res.data
+}
+
 //Update functions
 async function updateClass(data) {
   const res = await Axios.post('/api/updateclass', { data }).catch(err =>
     errfunc(err)
   )
+  return await res.data
+}
+
+async function assignMentor(data) {
+  const res = await Axios.post('/api/assignMentor', { data }).catch(err => {
+    errfunc(err)
+  })
   return await res.data
 }
 
@@ -104,13 +118,6 @@ async function deleteClass(data) {
   return await res.data
 }
 
-async function assignMentor(data) {
-  const res = await Axios.post('/api/assignMentor', { data }).catch(err => {
-    errfunc(err)
-  })
-  return await res.data
-}
-
 export {
   getProfileInfo,
   isLoggedIn,
@@ -121,5 +128,6 @@ export {
   getModuleOptions,
   getMentors,
   createNewClassModule,
-  assignMentor
+  assignMentor,
+  getRelevantClassModules
 }
