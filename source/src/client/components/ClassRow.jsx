@@ -20,6 +20,11 @@ export default class ClassRow extends Component {
               <button className='editbutton'>Edit</button>
             </Link>
           </div>
+          {this.props.relMod.map((item, i) => (
+            <p key={i}>
+              {this.props.modules.filter(x => x.id === item.moduleid)[0].title}
+            </p>
+          ))}
           <Link
             className='button'
             to={{
