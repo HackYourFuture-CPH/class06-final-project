@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Public from "../components/Public";
+import Public from "../components/MainPage/MainPage";
 import Profile from "../components/Profile";
 import EditClass from "../components/EditClass";
 import EditProfile from "../components/EditProfile";
