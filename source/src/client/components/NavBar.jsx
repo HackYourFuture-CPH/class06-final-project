@@ -25,13 +25,16 @@ export const NavBar = props => {
         <Link to="/">
           <Button marginRight={12}>Home</Button>
         </Link>
-        <Link to="/adminview">
-          <Button marginRight={12}>Admin</Button>
-        </Link>
         {props.isAuthenticated && (
-          <Button>
-            <Link to="/profile">Profile</Link>
-          </Button>
+          <>
+            <Link to="/adminview">
+              <Button marginRight={12}>Admin</Button>
+            </Link>
+
+            <Link to="/profile">
+              <Button marginRight={12}>Profile</Button>
+            </Link>
+          </>
         )}
 
         <Button
