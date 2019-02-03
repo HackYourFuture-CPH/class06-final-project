@@ -15,11 +15,10 @@ export default class AssignBtn extends Component {
   }
 
   handleBtnClick = () => {
-    console.log(this.props.date, this.props.mentor)
     assignMentor({
       date: this.props.date,
       mentor: this.props.mentor
-    }).then(res => this.setState({ assigned: true }, console.log(res)))
+    }).then(res => this.setState({ assigned: true }))
   }
 
   render() {

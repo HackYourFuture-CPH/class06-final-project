@@ -144,6 +144,22 @@ const getMentors = (req, res, next) => {
   })
 }
 
+const getRelevantClassModules = (req, res, next) => {
+  pool.query(
+    'SELECT * FROM classes_modules WHERE end_date >= now()',
+    (err, rows) => {
+      if (err) {
+        throw new Error(
+          'Whoops! Something went wrong while fetching relevant classes \n' + err
+        )
+      } else {
+        res.mydata = { rows }
+        next()
+      }
+    }
+  )
+}
+
 module.exports = {
   createClass,
   getClasses,
@@ -152,5 +168,6 @@ module.exports = {
   getModuleOptions,
   getMentors,
   createClassModule,
-  assignMentor
+  assignMentor,
+  getRelevantClassModules
 }

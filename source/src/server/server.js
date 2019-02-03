@@ -86,6 +86,10 @@ app.post('/api/assignMentor', authRouter.isAdmin, (req, res) => {
   res.sendStatus(200)
 })
 
+app.post('/api/getClassModules', queries.getRelevantClassModules, (req, res) => {
+  res.send(res.mydata)
+})
+
 /*
  * This is the catch all route to send the app to the browser on the first ping.
  */

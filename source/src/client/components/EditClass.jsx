@@ -27,7 +27,6 @@ export default class EditClass extends Component {
 
   onSubmitClickHandler = () => {
     const data = { inp: this.state.inp, id: this.state.id }
-    // const inp = this.state.inp
     if (data.inp.length >= 3) {
       this.setState({
         inp: ''
@@ -48,6 +47,7 @@ export default class EditClass extends Component {
     if (this.state.redirect) {
       return <Redirect to='/adminview' />
     }
+
     return (
       <div className='editClass'>
         <h1>EditClass</h1>
@@ -63,6 +63,7 @@ export default class EditClass extends Component {
           <button className='submitclass' onClick={this.onSubmitClickHandler}>
             Edit Class
           </button>
+
           <button className='deleteclass' onClick={this.onDeleteClickHandler}>
             Delete Class
           </button>
